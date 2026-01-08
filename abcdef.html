@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pastel Shoe Store</title>
+  <style>
+    /* GENERAL BODY STYLING */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+    }
+
+    /* TOP NAVIGATION BAR */
+    .topbar {
+      background-color: #ffd1dc; /* pastel pink */
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .topbar a {
+      text-decoration: none;
+      color: #355e3b; /* pastel green */
+      margin-right: 20px;
+      font-weight: bold;
+    }
+
+    .topbar a:hover {
+      color: #000;
+    }
+
+    .topbar input[type="text"] {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #355e3b;
+    }
+
+    /* MAIN CONTAINER */
+    .container {
+      padding: 20px;
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto;
+    }
+
+    /* PRODUCT CARDS */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #fff3f5; /* light pastel pink */
+      border-radius: 10px;
+      width: 220px;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      color: #355e3b;
+      margin: 10px 0 5px 0;
+    }
+
+    .card p {
+      margin: 5px 0;
+      font-weight: bold;
+      color: #27482d;
+    }
+
+    .card button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #355e3b;
+      color: #ffd1dc;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .card button:hover {
+      background-color: #27482d;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- TOP NAVIGATION BAR -->
+<div class="topbar">
+  <div>
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">Contact Us</a>
+    <a href="#">Feedback</a>
+  </div>
+  <div>
+    <input type="text" id="topSearch" placeholder="Search shoes..." onkeyup="searchProducts()">
+  </div>
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+  <h1 style="text-align:center; color:#355e3b;">Welcome to Pastel Shoe Store</h1>
+  
+  <!-- PRODUCT CARDS -->
+  <div class="products" id="productList">
+    <div class="card">
+      <img src="https://picsum.photos/200/150?random=1" alt="Red Sneakers">
+      <h3>Red Sneakers</h3>
+      <p>$45</p>
+      <button onclick="addToCart('Red Sneakers')">Add to Cart</button>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/200/150?random=2" alt="Green Running Shoes">
+      <h3>Green Running Shoes</h3>
+      <p>$50</p>
+      <button onclick="addToCart('Green Running Shoes')">Add to Cart</button>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/200/150?random=3" alt="Pink Flats">
+      <h3>Pink Flats</h3>
+      <p>$35</p>
+      <button onclick="addToCart('Pink Flats')">Add to Cart</button>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/200/150?random=4" alt="Black Boots">
+      <h3>Black Boots</h3>
+      <p>$60</p>
+      <button onclick="addToCart('Black Boots')">Add to Cart</button>
+    </div>
+    <div class="card">
+      <img src="https://picsum.photos/200/150?random=5" alt="White Sports Shoes">
+      <h3>White Sports Shoes</h3>
+      <p>$55</p>
+      <button onclick="addToCart('White Sports Shoes')">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* BACKGROUND IMAGE SLIDER */
+  let images = [
+    "https://picsum.photos/1200/800?random=10",
+    "https://picsum.photos/1200/800?random=11",
+    "https://picsum.photos/1200/800?random=12"
+  ];
+  let index = 0;
+  function changeBackground() {
+    document.body.style.backgroundImage = "url(" + images[index] + ")";
+    index++;
+    if(index >= images.length) index = 0;
+  }
+  setInterval(changeBackground, 4000);
+  changeBackground();
+
+  /* ADD TO CART BUTTON DEMO */
+  function addToCart(product) {
+    alert(product + " has been added to your cart!");
+  }
+
+  /* SEARCH PRODUCTS FUNCTION */
+  function searchProducts() {
+    let input = document.getElementById("topSearch").value.toLowerCase();
+    let products = document.getElementById("productList").getElementsByClassName("card");
+    for(let i=0; i<products.length; i++){
+      let name = products[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+      if(name.includes(input)){
+        products[i].style.display = "";
+      } else {
+        products[i].style.display = "none";
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
